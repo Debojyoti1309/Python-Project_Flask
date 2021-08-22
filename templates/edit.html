@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block body %}
+ 
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <div class="card card-body">
+        <form action="/update/{{products.id}}" method="POST">
+          <div class="form-group">
+            <input type="text" name="name" value="{{products.name}}" class="form-control" placeholder="Updated Product Name" required>
+          </div>
+          <div class="form-group">
+            <input type="text" name="Price" value="{{products.Price}}" class="form-control" placeholder="Updated Product Price" required>
+          </div>
+          <div class="form-group">
+            <input type="text" name="description" value="{{products.description}}" class="form-control" placeholder="Update Product Description" required>
+          </div>
+          <div class="form-group">
+            <label for="">Date Of Creation:
+            <input type="date" name="created_at" value="{{products.created_at}}" class="form-control" placeholder="Updated Product Creation" required>
+          </div></label>
+          <div class="form-group">
+            <label for="">Date Of Updation:
+            <input type="date" name="updated_at" value="{{products.updated_at}}" class="form-control" placeholder="Updated Product Updation" required>
+          </div></label>
+          <div class="form-group">
+            <input type="text" name="add_by_user" value="{{products.add_by_user}}" class="form-control" placeholder="Updated Product added By" required>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">
+              Update
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+ 
+{% endblock %}

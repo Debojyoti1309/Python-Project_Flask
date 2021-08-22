@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Python Project</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
+ 
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+<style>
+  .card-body{
+  box-shadow: -16px 54px 119px -2px rgba(56,203,221,0.5);
+  -webkit-box-shadow: -16px 54px 119px -2px rgba(56,203,221,0.5);
+  -moz-box-shadow: -16px 54px 119px -2px rgba(56,203,221,0.5);
+  }
+ 
+</style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md bg-light navbar-light">
+      <div class='container'>
+        <!-- Brand -->
+        <a class="navbar-brand" href="#">Debojyoti Das's Python Project Webgen</a>
+
+        <!-- Toggler/collapsibe Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav ml-auto">
+            {% if session.username %}
+              <li class="nav-item">
+                <a class="nav-link" href="">Welcome : {{session.username}}</a>
+              </li>&nbsp;&nbsp;&nbsp;&nbsp;
+              <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+              </li>
+                <li class="nav-item">
+              <a class="nav-link" href="/reg">Registration</a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class='container mt-4'>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <!-- <div class="alert alert-{{ category }}">{{ message }}</div> -->
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    
+    {% block body %}
+
+    {% endblock %}
+    </div>
+
+    <script>
+      const btnDelete= document.querySelectorAll('.btn-delete');
+      if(btnDelete) {
+        const btnArray = Array.from(btnDelete);
+        btnArray.forEach((btn) => {
+          btn.addEventListener('click', (e) => {
+            if(!confirm('Are you sure you want to delete it?')){
+              e.preventDefault();
+            }
+          });
+        })
+      }
+       
+      $(document).ready(function() {
+          $('#example').DataTable({     
+            "aLengthMenu": [[3, 5, 10, 25, -1], [3, 5, 10, 25, "All"]],
+              "iDisplayLength": 3
+             } 
+          );
+      } );
+       
+      </script>
+  </body>
+</html>
